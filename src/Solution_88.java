@@ -13,6 +13,7 @@
 public class Solution_88 {
 
     //归并排序中的归并步骤
+    // 时间复杂度O(m+n) 空间复杂度O(m)
     public void merge(int[] nums1, int m, int[] nums2, int n) {
 
         int[] nums_1 = new int[m];
@@ -36,6 +37,30 @@ public class Solution_88 {
             else if (i < m && j >= n){
                 nums1[k] = nums_1[i];
                 i++;
+            }
+        }
+    }
+
+    // 时间复杂度O(m+n) 空间复杂度O(1)
+    public void merge2(int[] nums1, int m, int[] nums2, int n){
+        int i = m-1;
+        int j = n-1;
+        for (int k = m+n-1; k >= 0 ; k--) {
+            if (i >= 0 && j >= 0 && nums1[i] > nums2[j]){
+                nums1[k] = nums1[i];
+                i--;
+            }
+            else if (i >= 0 && j >= 0 && nums2[j] >= nums1[i]){
+                nums1[k] = nums2[j];
+                j--;
+            }
+            else if (i >= 0 && j < 0){
+                nums1[k] = nums1[i];
+                i--;
+            }
+            else if (j >= 0 && i < 0){
+                nums1[k] = nums2[j];
+                j--;
             }
         }
     }
