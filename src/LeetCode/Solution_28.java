@@ -1,3 +1,5 @@
+package LeetCode;
+
 /**
  * 28. 实现strStr()
  *
