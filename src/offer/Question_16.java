@@ -35,7 +35,7 @@ public class Question_16 {
 
     // 使用公式 a的n次幂 = a的n/2次幂 * a的n/2次幂   (n为偶数)
     //          a的n次幂 = a的(n-1)/2次幂 * a的(n-1)/2次幂 * a (n为奇数)
-    double pow(double base, int absExponent){
+    private double pow(double base, int absExponent){
 
         if (absExponent == 0) return 1;
         if (absExponent == 1) return base;
