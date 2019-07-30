@@ -12,7 +12,7 @@ public class Solution_142 {
     }
 
     /*
-    // 修改数值方法
+    // 修改数值方法，只需要一个指针
     public ListNode detectCycle(ListNode head) {
 
         if (head == null) return null;
