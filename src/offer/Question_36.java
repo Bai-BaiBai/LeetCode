@@ -32,17 +32,16 @@ public class Question_36 {
 
         if (node == null) return;
 
-        Node cur = node;
-        if (cur.left != null){
-            convertNode(cur.left, lastNode);
+        if (node.left != null){
+            convertNode(node.left, lastNode);
         }
-        cur.left = lastNode;
+        node.left = lastNode;
         if (lastNode != null){
-            lastNode.right = cur;
+            lastNode.right = node;
         }
-        lastNode = cur;
-        if (cur.right != null){
-            convertNode(cur.right, lastNode);
+        lastNode = node;
+        if (node.right != null){
+            convertNode(node.right, lastNode);
         }
     }
 }
