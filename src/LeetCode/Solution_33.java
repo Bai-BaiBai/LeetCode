@@ -16,42 +16,35 @@ public class Solution_33 {
 
     public int search(int[] nums, int target) {
 
-        int left = 0;
-        int right = nums.length-1;
-        if (left == right) {
-            return target == nums[left] ? left : -1;
-        }
-        return search(nums, target, left, right);
+        return search(nums, target, 0, nums.length-1);
     }
 
     private int search(int[] nums, int target, int left, int right) {
 
-        if (nums.length < 1 || left > right) return -1;
-        int mid = left + (right - left)/2;
-
-        if (nums[left] == target) return left;
+        if (left > right) return -1;
+        int mid = (left + right)/2;
         if (nums[mid] == target) return mid;
-        if (nums[right] == target) return right;
 
-        // 如果数组旋转
-        if (nums[left] > nums[right]){
-            // 判断target在左半面还是右半面
-            if (nums[left] < target && nums[mid] > target) {
-                return search(nums, target, left, mid);
-            }else {
-                return search(nums, target, mid, right);
+        // 如果nums[mid] 比 nums[right]小 说明 [mid...right] 是有序的
+        if (nums[mid] < nums[right]){
+            // 判断 target 是否在有序的区间内
+            // 在则缩小区间，变为二分查找
+            if (nums[mid] < target && target <= nums[right]){
+                return search(nums, target, mid+1, right);
+            }
+            // 不在则去无序区间寻找，递归将数组分成两部分
+            else {
+                return search(nums, target, left, mid-1);
             }
         }
-        // 如果数组没有旋转
-        else if (nums[left] < nums[right]){
-            if (target < nums[left] || target > nums[right]) return -1;
-            if (nums[mid] > target){
-                return search(nums, target, left, mid);
+        // 否则，说明 [left...mid] 是有序的
+        else {
+            if (nums[left] <= target && nums[mid] > target){
+                return search(nums, target, left, mid-1);
             }else {
-                return search(nums, target, mid, right);
+                return search(nums, target, mid+1, right);
             }
         }
-
-        return -1;
     }
+
 }
