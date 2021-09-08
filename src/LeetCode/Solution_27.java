@@ -21,4 +21,24 @@ public class Solution_27 {
         }
         return i;
     }
+
+
+    public int removeElement2(int[] nums, int val) {
+        // 在[0..k)中保留不为val的元素,k指向最后一个val
+        // 在[k..i]中为val
+        int k = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != val) {
+                if (k != i) {
+                    int temp = nums[k];
+                    nums[k] = nums[i];
+                    nums[i] = temp;
+                    k++;
+                } else {
+                    k++;
+                }
+            }
+        }
+        return k;
+    }
 }
